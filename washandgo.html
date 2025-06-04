@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wash and Go - Lavado de Autos a Domicilio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo-text {
+      font-family: 'Tsukimi Rounded', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      font-style: normal;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+
+    .carousel-section .carousel {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .carousel-section .carousel img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-section .carousel img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .carousel-section .carousel-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      font-size: 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .carousel-section .carousel-text button {
+      margin-top: 1.5rem;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 1.5rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      line-height: 1;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-section .carousel-text button i.fab.fa-whatsapp {
+      font-size: 1.5rem;
+      color: white;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      display: inline-block;
+      transform: translateY(1px);
+    }
+
+    .carousel-section .carousel-text button:hover {
+      background-color: #1ebe5d;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .service {
+      flex: 1;
+      max-width: 320px;
+      min-height: 350px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .service i {
+      font-size: 2.5rem;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+
+    .service-divider {
+      width: 60px;
+      border: 2px solid #007BFF;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .service-list li {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+
+    .service-list i {
+      color: #25D366;
+      margin-right: 0.5rem;
+    }
+
+    .services {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .service button {
+      margin-top: auto;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 1.75rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      line-height: 1;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .service button i.fab.fa-whatsapp {
+      font-size: 1.5rem;
+      color: white;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      display: inline-block;
+      transform: translateY(1px); /* ajuste fino */
+    }
+
+    .service button:hover {
+      background-color: #1ebe5d;
+    }
+
+
+    #contacto p {
+      margin: 0.5rem 0;
+    }
+
+    .footer {
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    #privacy-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    #privacy-popup h3 {
+      margin-bottom: 1rem;
+    }
+
+    #privacy-popup button {
+      margin-top: 1rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav a {
+        margin: 0 0.5rem;
+      }
+
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .carousel-text {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-text">Wash & Go</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="carousel-section" id="inicio">
+    <div class="carousel">
+        <div class="carousel-text">
+          Lavado de autos a domicilio con calidad y comodidad
+          <br>
+          <button><i class="fab fa-whatsapp"></i> Agendar Ahora </button>
+      </div>
+      <img src="img/banner1.jpg" class="active">
+      <img src="img/banner2.jpg">
+      <img src="img/banner3.jpg">
+      <img src="img/banner4.jpg">
+      <img src="img/banner5.jpg">
+    </div>
+  </section>
+
+  <section class="section" id="servicios">
+    <h2>Servicios</h2>
+    <div class="services">
+      <div class="service">
+        <i class="fas fa-car"></i>
+        <hr class="service-divider">
+        <h3>Lavado Standard</h3>
+        <ul class="service-list">
+          <li><i class="fas fa-check"></i> Lavado exterior</li>
+          <li><i class="fas fa-check"></i> Enjuague sin residuos</li>
+          <li><i class="fas fa-check"></i> Secado a mano</li>
+        </ul>
+        <button><i class="fab fa-whatsapp"></i> Agendar</button>
+      </div>
+      <div class="service">
+        <i class="fas fa-broom"></i>
+        <hr class="service-divider">
+        <h3>Lavado Completo</h3>
+        <ul class="service-list">
+          <li><i class="fas fa-check"></i> Todo lo del estándar</li>
+          <li><i class="fas fa-check"></i> Aspirado interior</li>
+          <li><i class="fas fa-check"></i> Limpieza de vidrios</li>
+          <li><i class="fas fa-check"></i> Lavado de rines</li>
+        </ul>
+        <button><i class="fab fa-whatsapp"></i> Agendar</button>
+      </div>
+      <div class="service">
+        <i class="fas fa-gem"></i>
+        <hr class="service-divider">
+        <h3>Lavado Premium</h3>
+        <ul class="service-list">
+          <li><i class="fas fa-check"></i> Todo lo del completo</li>
+          <li><i class="fas fa-check"></i> Encerado premium</li>
+          <li><i class="fas fa-check"></i> Tratamiento de interiores</li>
+          <li><i class="fas fa-check"></i> Aromatizante a elección</li>
+          <li><i class="fas fa-check"></i> Protección UV</li>
+        </ul>
+        <button><i class="fab fa-whatsapp"></i> Agendar</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="contacto">
+    <h2>Contacto</h2>
+    <p>Dirección: Lorem ipsum dolor sit amet.</p>
+    <p>Teléfono: (000) 123-4567</p>
+    <p>Email: contacto@washandgo.com</p>
+  </section>
+
+  <footer class="footer">
+    <p>Todos los derechos reservados Washandgo S.A. de C.V. | <a onclick="document.getElementById('privacy-popup').style.display='block'">Políticas de Privacidad</a></p>
+  </footer>
+
+  <div id="privacy-popup">
+    <h3>Políticas de Privacidad</h3>
+    <p>Esta página recopila información básica como nombre y contacto con el único propósito de ofrecer el servicio de lavado de autos a domicilio. No compartimos tu información con terceros sin tu consentimiento. Puedes solicitar la eliminación de tus datos en cualquier momento.</p>
+    <button onclick="document.getElementById('privacy-popup').style.display='none'">Cerrar</button>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel img');
+
+    setInterval(() => {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }, 4000);
+  </script>
+</body>
+
+</html>
